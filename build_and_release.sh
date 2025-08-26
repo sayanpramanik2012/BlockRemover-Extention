@@ -20,7 +20,6 @@ ZIP="dist/BlockRemover-${VERSION}.zip"
 # - exclude .git, node_modules, dist itself, and GitHub workflows
 zip -r "$ZIP" . \
   -x '*.git*' \
-  -x '*node_modules*' \
   -x 'dist/*' \
   -x '.github/*' >/dev/null
 echo "Built: $ZIP"
