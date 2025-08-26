@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "BlockRemover",
+  "version": "0.1.0",
+  "description": "Removes epaper modal/blocker elements for specific URLs",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://epaper.anandabazar.com/*"
+      ],
+      "js": ["content/remove-anandabazar.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://epaper.indiatimes.com/timesepaper*"
+      ],
+      "js": ["content/remove-indiatimes.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
