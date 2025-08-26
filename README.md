@@ -1,26 +1,69 @@
-# Epaper Clean Tester (Chrome MV3)
+# Epaper Clean Tester (Local Install)
 
-Removes specific overlay elements from epaper pages on production, using Manifest V3 content scripts and MutationObserver.
+A small Chromium‑based browser extension that removes specific overlay elements on supported epaper pages for easier viewing during testing. It installs locally via the browser’s Developer Mode (no Web Store needed).
 
-## Install (Load unpacked)
+## Requirements
 
-For local testing without publishing, enable Developer Mode and load the extension folder directly.  
-Steps: open chrome://extensions → toggle Developer mode → Load unpacked → select the folder containing manifest.json.
+- Desktop browser: Google Chrome, Microsoft Edge, or Brave.
+- Ability to enable Developer mode on the extensions page.
 
-## Release with GitHub CLI (manual)
+## Download
 
-Authenticate with GitHub CLI (`gh auth login`), then create a release with a tag and attach the ZIP asset.
-Example:  
-`gh release create v0.1.0 dist/epaper-clean-tester-v0.1.0.zip --title "Epaper Clean Tester v0.1.0" --notes "First release"`
-You can attach multiple assets and optionally add a display label by appending `#Label` after the filename when uploading.
+1. Open this repository’s “Releases” section.
+2. Download the latest release asset named like: `BlockRemover-vX.Y.Z.zip`.
+3. Avoid the generic “Source code (zip)” unless instructed; use the dedicated release asset for the extension.
 
-## Release with GitHub Actions (automatic)
+## Unzip
 
-Use a workflow that triggers on pushing a tag like `v*`, zips the extension, creates a release, and uploads the ZIP as an asset. 
-Ensure the workflow checks out the repo and uses the provided `GITHUB_TOKEN` to create the release and upload assets.
+1. Extract the downloaded ZIP to a convenient folder.
+2. Ensure the selected folder directly contains `manifest.json` and the extension files (i.e., not nested an extra level inside another folder created by the unzip tool).
 
-## Development notes
+## Install in Google Chrome
 
-- Load unpacked is sufficient for testing without a Web Store account or fee.
-- When publishing to the Web Store, prepare a ZIP with manifest.json at the root and required listing assets.
+1. Open `chrome://extensions` in a new tab.
+2. Enable “Developer mode” (top‑right toggle).
+3. Click “Load unpacked” and select the unzipped folder that contains `manifest.json`.
+4. Confirm the extension appears in the list and its toggle is on.
 
+## Install in Microsoft Edge
+
+1. Open `edge://extensions`.
+2. Enable “Developer mode.”
+3. Click “Load unpacked” and select the unzipped folder.
+4. Confirm the extension is listed and enabled.
+
+## Install in Brave
+
+1. Open `brave://extensions`.
+2. Enable “Developer mode.”
+3. Click “Load unpacked” and select the unzipped folder.
+4. Confirm the extension is listed and enabled.
+
+## Use
+
+- Navigate to the supported epaper pages (including documented localhost routes for testing).
+- Refresh the page if it was already open; overlays should be removed automatically when the URL matches.
+
+## Update
+
+1. Download the newest release ZIP and extract it to a new folder (or replace the old folder’s contents).
+2. On the browser’s extensions page:
+   - Click “Update” (if available) to reload unpacked extensions, or
+   - Remove the old entry and use “Load unpacked” again with the new folder.
+
+## Uninstall
+
+- Open the extensions page and click “Remove” on the extension card to uninstall.
+- Alternatively, toggle it off to disable temporarily.
+
+## Troubleshooting
+
+- “Load unpacked” missing: Ensure “Developer mode” is enabled on the extensions page.
+- “Could not load manifest”: The selected folder must directly contain `manifest.json` (not within an extra nested folder).
+- Extension loads but does nothing: Confirm the page URL matches one of the supported patterns and refresh.
+- Managed or enterprise environments may restrict Developer mode or unpacked installs; consider using a personal profile or device if blocked.
+
+## Privacy
+
+- The extension runs only on the specific domains/paths documented in the project and does not collect or transmit data.
+- Developer mode is required to install and manage unpacked extensions; it can typically be turned off afterward if not needed.
